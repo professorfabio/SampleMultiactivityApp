@@ -13,6 +13,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE;
+
+    static {
+        EXTRA_MESSAGE = "com.example.samplemultiactivityapp.MESSAGE";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonClick(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
-        //EditText editText1 = (EditText) findViewById(R.id.editTextTextPersonName);
+        EditText editText = (EditText) findViewById(R.id.editTextText);
         //EditText editText2 = (EditText) findViewById(R.id.editTextTextPersonName2);
-        //String message = editText1.getText().toString() + " " + editText2.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        editText.setText("");
         startActivity(intent);
     }
 }
